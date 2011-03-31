@@ -61,6 +61,8 @@ class LazyImageView < ImageView
         end
       end
     end
+
+    # Do this on a different thread
     LazyGalleryActivity.threadPoolExecutor.execute thread
   end
 

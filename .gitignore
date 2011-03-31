@@ -1,0 +1,13 @@
+*~
+*.DS_Store
+*.class
+*java#
+*.classpath
+*.project
+*.settings
+lazy-gallery/local.properties
+lazy-gallery/bin/
+lazy-gallery/gen/
+examples/simple/local.properties
+examples/simple/bin/
+examples/simple/gen/

@@ -76,18 +76,6 @@
           <arg value="../bin/classes" />
           <arg value="." />
         </exec>
-        
-        <!--
-            
-            TODO:
-            
-            "main function closing bracket" workaround - for java source compilation
-            <exec executable="sh" failonerror="true">
-            <arg value="-c" />
-            <arg value="./mirahc-source-hack"/>
-            </exec>
-             
-        -->
       </then>
       <else>
         <echo>hasCode = false. Skipping...</echo>

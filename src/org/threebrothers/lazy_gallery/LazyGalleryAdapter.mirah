@@ -11,7 +11,6 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.AdapterView
-import android.widget.AdapterView.OnItemSelectedListener
 
 import org.json.JSONArray
 import org.json.JSONException
@@ -81,45 +80,4 @@ class LazyGalleryAdapter < BaseAdapter
     return View(layout)
   end
 
-  def getOnItemSelectedListener(textView:TextView)
-    SelectionListener.new(self, textView)
-  end
-end
-
-class SelectionListener
-  implements OnItemSelectedListener
-
-  def initialize(adapter:LazyGalleryAdapter, textView:TextView)
-    @adapter = adapter
-    @textView = textView
-  end
-  
-  def onItemSelected(parent:AdapterView, view:View, pos:int, id:long)
-    unless @textView.nil?
-      photo_map = Map(@adapter.getItem pos)
-      if photo_map.containsKey('caption')
-        @textView.setText String(photo_map.get('caption'))
-        @textView.setVisibility View.VISIBLE
-      else
-        @textView.setVisibility View.INVISIBLE
-      end
-    end
-    
-    view.setSelected true
-    
-    # Preload children of the Gallery (i.e. those elements that are visible)
-    unless parent.nil?
-      parent.getChildCount.times do |i|
-        v = RelativeLayout(parent.getChildAt(i))
-        LazyImageView(v.getChildAt 0).load unless v.nil?
-      end
-    end
-  end
-
-  def onNothingSelected(parent:AdapterView)
-    unless @textView.nil?
-      @textView.setVisibility View.INVISIBLE
-      @textView.setText nil
-    end
-  end
 end

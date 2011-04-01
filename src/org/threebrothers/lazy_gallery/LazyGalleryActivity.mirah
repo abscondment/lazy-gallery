@@ -33,12 +33,12 @@ class LazyGalleryActivity < Activity
     
     caption = TextView(findViewById R.id.lazy_gallery_text)
     caption.setVisibility View.INVISIBLE
-    gallery.setOnItemSelectedListener gallery_adapter.getOnItemSelectedListener(caption)
+    gallery.setOnItemSelectedListener GallerySelectionListener.new(caption)
 
     this = self
     gallery.setOnItemClickListener do |parent, view, pos, id|
       if view.isSelected
-        # TODO: toast
+        # Toasty!
         item = Map(gallery_adapter.getItem pos)
         c = String(item.get 'caption') || "Item #{pos} (no caption)"
         Toast.makeText(this, c, Toast.LENGTH_SHORT).show
